@@ -1,0 +1,54 @@
+function init(self)
+	self.chesttextnode = gui.get_node("chesttext")
+	gui.set_enabled(self.chesttextnode, false)
+	self.ochestnode = gui.get_node("openchest")
+	self.cchestnode = gui.get_node("closedchest")
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("show") then
+		gui.set_text(self.chesttextnode, "Press E to open")
+		gui.set_enabled(self.chesttextnode, true)
+	elseif message_id == hash("hide") then
+		gui.set_enabled(self.chesttextnode, false)
+	elseif message_id == hash("nokey") then
+		gui.set_text(self.chesttextnode, "Find a Key")
+		gui.set_enabled(self.chesttextnode, true)
+	end
+	if message_id == hash("open") then
+		gui.set_visible(self.cchestnode, false)
+		gui.set_visible(self.ochestnode, true)
+		msg.post("/hotbarflare#hotbarflare", "show")
+		msg.post("/objectives#objectives", "objective3")
+	end
+end
+
+function on_input(self, action_id, action)
+	-- Add input-handling code here. The game object this script is attached to
+	-- must have acquired input focus:
+	--
+	--    msg.post(".", "acquire_input_focus")
+	--
+	-- All mapped input bindings will be received. Mouse and touch input will
+	-- be received regardless of where on the screen it happened.
+	-- Learn more: https://defold.com/manuals/input/
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end

@@ -1,0 +1,35 @@
+script: "/main/interact/interact_tower.gui_script"
+fonts {
+  name: "default_font"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  position {
+    x: 511.0
+    y: 43.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 75.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  text: "Press E to interact"
+  font: "default_font"
+  id: "towertext"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

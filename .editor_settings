@@ -1,0 +1,49 @@
+{
+  :bundle {
+    :html5 {
+      :architectures #{
+        "wasm-web"
+      }
+      :build_report false
+      :contentless false
+      :liveupdate false
+      :texture_compression "enabled"
+      :variant "release"
+      :with_symbols true
+    }
+    :last-bundle-command :project.bundle-html5
+    :output-directory "D:\\game"
+  }
+  :workflow {
+    :recent-files [
+      [
+        "/main/chest/chest.gui"
+        :scene
+      ]
+      [
+        "/main/endgui/endgui.gui"
+        :scene
+      ]
+      [
+        "/main/interact/interact_tower.gui"
+        :scene
+      ]
+      [
+        "/main/objectives/objectives.gui"
+        :scene
+      ]
+      [
+        "/main/guis/finaltext.gui"
+        :scene
+      ]
+      [
+        "/game.project"
+        :cljfx-form-view
+      ]
+      [
+        "/input/game.input_binding"
+        :cljfx-form-view
+      ]
+    ]
+  }
+}

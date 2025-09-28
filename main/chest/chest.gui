@@ -1,0 +1,74 @@
+script: "/main/chest/chest.gui_script"
+fonts {
+  name: "default_font"
+  font: "/builtins/fonts/default.font"
+}
+textures {
+  name: "chest"
+  texture: "/main/atlases/chest.atlas"
+}
+nodes {
+  position {
+    x: 786.0
+    y: 401.0
+  }
+  scale {
+    x: 0.131
+    y: 0.143
+  }
+  type: TYPE_BOX
+  texture: "chest/OIP"
+  id: "closedchest"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 786.0
+    y: 404.0
+  }
+  rotation {
+    z: 0.1
+  }
+  scale {
+    x: 0.137
+    y: 0.121
+  }
+  type: TYPE_BOX
+  texture: "chest/openchest"
+  id: "openchest"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 829.0
+    y: 426.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Press E to open"
+  font: "default_font"
+  id: "chesttext"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

@@ -1,0 +1,65 @@
+script: "/main/endgui/endgui.gui_script"
+fonts {
+  name: "default_font"
+  font: "/builtins/fonts/default.font"
+}
+textures {
+  name: "particle_blob"
+  texture: "/builtins/graphics/particle_blob.tilesource"
+}
+nodes {
+  position {
+    x: 500.0
+    y: 326.0
+  }
+  scale {
+    x: 8.562
+    y: 8.537
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "endbg"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 504.0
+    y: 323.0
+  }
+  scale {
+    x: 4.315
+    y: 4.167
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Good job you escaped!"
+  font: "default_font"
+  id: "endtext"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  inherit_alpha: true
+  visible: false
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

@@ -1,0 +1,28 @@
+[project]
+title = Escape The Island
+version = 0.1
+
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[input]
+game_binding = /input/game.input_bindingc
+
+[display]
+width = 1025
+height = 700
+
+[physics]
+scale = 0.02
+
+[script]
+shared_state = 1
+
+[tilemap]
+max_tile_count = 10000
+
+[particle_fx]
+max_particle_count = 999999
+max_emitter_count = 999999
+max_count = 999999
+

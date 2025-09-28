@@ -1,0 +1,128 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")            -- [2]
+	self.correction = vmath.vector3()
+	self.moving = false                             -- [3]
+	self.input = vmath.vector3()                    -- [4]
+	self.dir = vmath.vector3(0, 1, 0)               -- [5]
+	self.speed = 200
+	self.collide = false
+	math.randomseed(os.time())
+	self.interact = false
+	self.keychance = 0
+	self.haskey = false
+	self.chestinteract = false
+	self.canplace = false
+	--particlefx.play("/flare#flare")
+end
+
+function final(self)
+	msg.post(".", "release_input_focus")            -- [8]
+end
+
+function update(self, dt)
+	if self.moving then
+		local pos = go.get_position()               -- [10]
+		pos = pos + self.dir * self.speed * dt      -- [11]
+		go.set_position(pos)                        -- [12]
+	end
+
+	self.input.x = 0                                -- [13]
+	self.input.y = 0
+	self.moving = false
+	self.correction = vmath.vector3()
+end
+
+function fixed_update(self, dt)
+	-- This function is called if 'Fixed Update Frequency' is enabled in the Engine section of game.project
+	-- Can be coupled with fixed updates of the physics simulation if 'Use Fixed Timestep' is enabled in Physics section of game.project
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+	--pprint(message)
+	if message_id == hash("trigger_response") then
+		if message.group == hash("chestinteract") then
+			if message.enter then
+				self.chestinteract = true
+				if self.haskey == true then
+					msg.post("/chest#chest", "show")
+				else
+					msg.post("/chest#chest", "nokey")
+				end
+			else 
+				self.chestinteract = false
+				msg.post("/chest#chest", "hide")
+			end
+		elseif message.group == hash("interactobject") then
+			if message.enter then
+				msg.post("/Interact_tower#interact_tower", "show")
+				self.interact = true
+			else
+				msg.post("/Interact_tower#interact_tower", "hide")
+				self.interact = false
+				self.keychance = 0
+			end
+		elseif message.group == hash("placeflare") then
+			if message.enter then
+				self.canplace = true
+				msg.post("/hotbarflare#hotbarflare", "showfinal")
+			else
+				self.canplace = false
+				msg.post("/hotbarflare#hotbarflare", "hidefinal")
+			end
+		end
+	end
+	if message_id == hash("contact_point_response") then
+		if message.group == hash("collisionobject") then
+			if message.distance > 0 then
+				local proj = vmath.project(self.correction, message.normal * message.distance)
+				if proj < 1 then
+					local comp = (message.distance - message.distance * proj) * message.normal
+					go.set_position(go.get_position() + comp)
+					self.correction = self.correction + comp
+				end
+			end
+		end 
+	end
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("up") then
+		self.input.y = 1                      -- [15]a
+	elseif action_id == hash("down") then
+		self.input.y = -1
+	elseif action_id == hash("left") then
+		self.input.x = -1
+	elseif action_id == hash("right") then
+		self.input.x = 1
+	elseif action_id == hash("interact") then
+		if self.chestinteract == true and self.haskey == true then
+			msg.post("/chest#chest", "open")
+		elseif self.interact == true then
+			if self.keychance == 0 then
+				self.keychance = math.random()
+				print(self.keychance)
+				if self.keychance <= .2 then
+					msg.post("/key#key", "show")
+					msg.post("/objectives#objectives", "objective2")
+					self.haskey = true
+				end
+			end
+		elseif self.canplace == true then
+			msg.post("/flare#flare", "activate")
+		end
+	end
+
+	if not self.collide and vmath.length(self.input) > 0 then
+		self.moving = true                          -- [16]
+		self.dir = vmath.normalize(self.input)      -- [17
+	end
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end
