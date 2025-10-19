@@ -8,7 +8,7 @@ Originally created for an English project about learning something new. This gam
 
 ## Gameplay
 
-You are stranded on a mysterious island and must find a way to escape. Explore the environment, rummage through plants and collapsed buildings, and gather resources to craft your way to freedom.
+You are stranded on a mysterious island and must find a way to escape. Explore the environment, use the arrow keys to move the charactor around, rummage through plants and collapsed buildings, and gather resources to craft your way to freedom.
 
 ## Features
 
