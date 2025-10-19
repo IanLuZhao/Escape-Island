@@ -1,9 +1,5 @@
 # [Escape-Island](https://ianluzhao.github.io/Escape-Island)
 
-[![Play Game](images/screenshot.png)](https://ianluzhao.github.io/Escape-Island)
-
-**Click the image above to play!**
-
 ## About
 
 A survival adventure game built with Defold in 2023.
@@ -26,6 +22,3 @@ You are stranded on a mysterious island and must find a way to escape. Explore t
 [Launch Game](https://ianluzhao.github.io/Escape-Island)
 
 [![screenshot](images/screenshot.png)](https://ianluzhao.github.io/Escape-Island)
-
-
-
